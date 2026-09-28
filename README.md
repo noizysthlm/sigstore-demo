@@ -12,7 +12,7 @@ Port forward with `kubectl port-forward --address 0.0.0.0 service/dummy-webapp-s
 ## The structure of this repo
 
 ### Workflows
-There is currently one workflow in this repo.
+There is currently one workflow in this repo
 
 #### container-build-push
 Builds and pushes, the image to `ghcr.io`. Image name will be noizysthlm/sigstore-demo, available tags are `latest` and the commit hashes.
