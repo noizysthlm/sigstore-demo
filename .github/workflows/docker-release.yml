@@ -2,11 +2,11 @@
 # https://docs.github.com/en/actions/tutorials/authenticate-with-github_token
 # https://github.com/marketplace/actions/cosign-installer
 
-name: container-build-push-sign
+name: container-build-push
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'Dockerfile'
       - 'app/*'
@@ -17,7 +17,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write
 
     steps:
       - name: Checkout
@@ -42,9 +41,3 @@ jobs:
           tags: |
             ghcr.io/noizysthlm/sigstore-demo:latest
             ghcr.io/noizysthlm/sigstore-demo:${{ github.sha }}
-
-      - name: install cosign
-        uses: sigstore/cosign-installer@v4.1.2
-
-      - name: Sign the image
-        run: cosign sign ghcr.io/noizysthlm/sigstore-demo:latest
