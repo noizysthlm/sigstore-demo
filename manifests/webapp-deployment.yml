@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: ghcr.io/noizysthlm/sigstore-test:signed
+        image: ghcr.io/noizysthlm/sigstore-demo:latest
         ports:
         - containerPort: 5000
