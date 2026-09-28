@@ -35,5 +35,5 @@ jobs:
         for commit in $commits; do
           echo "Verifying commit $commit"
           gitsign verify --certificate-identity $IDENTITY --certificate-oidc-issuer $ISSUER $commit \
-            || gitsign verify --certificate-identity $IDENTITY2 --certificate-oidc-issuer $ISSUER2 $commit \
+            || gitsign verify --certificate-identity $IDENTITY2 --certificate-oidc-issuer $ISSUER2 $commit
         done
