@@ -5,13 +5,15 @@ The container in [docker.io/noizysthlm/sigstore-demo](docker.io/noizysthlm/sigst
 - Install Docker in rootless mode, Minikube, HELM, and kubectl if not installed by Minikube.
 - Make sure that port 8080 (TCP) is accessible.
 ### Deploy the app
-`kubectl apply -f ./<webapp-deployment.yml>` and then `kubectl apply -f ./<webapp-service.yml>`. The webpage should be accessible on port 8080.
+`kubectl apply -f ./<webapp-deployment.yml>` and then `kubectl apply -f ./<webapp-service.yml>`.
+
+Port forward with `kubectl port-forward --address 0.0.0.0 service/dummy-webapp-service 8080:8080` and access the webpage should be accessible on port 8080.
 
 ## The Kyverno Policy
 The policy will `fail` any deployment where the image do not meet the signature requirements.
 The policy enforces signature verification with cosign where:
-- The the subject is `noizy.sthlm@gmail.com`
--  The oicd-issuer is `https://accounts.google.com`
+- The the subject is `https://github.com/noizysthlm/sigstore-demo/.github/workflows/docker-release.yml@refs/heads/main"`
+-  The oicd-issuer is `https://token.actions.githubusercontent.com`
 
 The policy can be applied by running `kubectl apply -f ./validate-container-signatures.yml`. Any new pods and deployments will fail unless they comply with the policy.
 
@@ -22,7 +24,7 @@ The policy can be applied by running `kubectl apply -f ./validate-container-sign
 After configuring the local Repository to use `gitsign` for signatures, we can sign our commits by including the `-S` option with the `commit` command.
 
 ### Verify a commit
-`git cat-file commit HEAD` to shows the complete commit message for the `HEAD` commit. If signed, there should be a gpg signature there.
+`git cat-file commit HEAD` to shows the complete commit message for the `HEAD` commit. If signed, there should be a gpg signature there. Signatures recorded in Rekor can be viewed in [https://search.sigstore.dev/](https://search.sigstore.dev/).
 
 `gitsign verify --certificate-identity=<the-signers-identity> --certificate-oidc-issuer=<the-oicd-provider> HEAD` verifies the latest commit.
 
