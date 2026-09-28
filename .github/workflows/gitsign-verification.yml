@@ -10,6 +10,8 @@ permissions:
 env:
   IDENTITY: noizy.sthlm@gmail.com
   ISSUER: https://accounts.google.com
+  IDENTITY2: ivboq001@gmail.com
+  ISSUER2: https://accounts.google.com
 
 jobs:
   verify:
@@ -32,5 +34,6 @@ jobs:
         commits="$(git rev-list origin/${BASE_REF}..HEAD)"
         for commit in $commits; do
           echo "Verifying commit $commit"
-          gitsign verify --certificate-identity $IDENTITY --certificate-oidc-issuer $ISSUER $commit
+          gitsign verify --certificate-identity $IDENTITY --certificate-oidc-issuer $ISSUER $commit \
+            || gitsign verify --certificate-identity $IDENTITY2 --certificate-oidc-issuer $ISSUER2 $commit
         done
