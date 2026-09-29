@@ -9,7 +9,8 @@ on:
       - master
     paths:
       - 'Dockerfile'
-      - 'app/*'
+      - 'app/**'
+  workflow_dispatch:
 
 jobs:
   build-push:
