@@ -5,8 +5,6 @@ metadata:
   labels:
     app: dummy-webapp
 spec:
-  imagePullpolicy: Always
-
   replicas: 2
   selector:
     matchLabels:
@@ -18,7 +16,6 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: noizysthlm/sigstore-demo:latest
+        image: ghcr.ionoizysthlm/sigstore-demo:latest
         ports:
         - containerPort: 5000
-        terminationGracePeriodSeconds: 2
