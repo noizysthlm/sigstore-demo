@@ -9,7 +9,7 @@ on:
       - main
     paths:
       - 'Dockerfile'
-      - 'app/*'
+      - 'app/**'
 
 jobs:
   build-push:
