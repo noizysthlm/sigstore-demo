@@ -22,6 +22,7 @@ spec:
         resources: ["pods"]
   matchImageReferences:
     - glob: "ghcr.io/noizysthlm/sigstore-demo:*"
+    - glob: "noizysthlm/sigstore-demo:*"
   attestors:
     - name: cosign
       cosign:
