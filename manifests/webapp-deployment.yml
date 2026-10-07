@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 2    # Force Kill a pod after 2 sec
       containers:
       - name: webapp
-        image: noizysthlm/sigstore-demo:latest
+        image: ghcr.io/noizysthlm/sigstore-demo:latest
         imagePullPolicy: Always # Pull image on every deployment
         ports:
         - containerPort: 5000
